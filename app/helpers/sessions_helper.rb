@@ -24,8 +24,13 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
+  
+  def authenticate
+    deny_access unless signed_in?
+  end
 
   def deny_access
+    puts "Denying access cap'n"
     store_location
     redirect_to signin_path, :notice => "Please sign in to acecs this page."
   end
